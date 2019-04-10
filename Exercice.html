@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="Exercice.css">
     <title>Quizz</title>
   </head>
-  <body>
+  <body onload="quizz()">
     <form method="post">
-      <div class="testquizz">
+      <div>
         <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
@@ -20,12 +20,12 @@
           </thead>
           <tbody class="text-center bg-danger text-dark font-weight-bold">
               <tr>
-                <td id="answer1">Réponse 1</td>
-                <td id="answer2">Réponse 2</td>
+                <td onclick="checkAnswer(this)" id="answer1">Réponse 1</td>
+                <td onclick="checkAnswer(this)" id="answer2">Réponse 2</td>
               </tr>
               <tr>
-                <td id="answer3">Réponse 3</td>
-                <td id="answer4">Réponse 4</td>
+                <td onclick="checkAnswer(this)" id="answer3">Réponse 3</td>
+                <td onclick="checkAnswer(this)" id="answer4">Réponse 4</td>
               </tr>
           </tbody>
         </table>

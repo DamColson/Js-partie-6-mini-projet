@@ -1,9 +1,9 @@
 //Tableau initial comprenant 10 strings, elles même contenant les questions et réponses possibles du quizz
 
-var questions = ['Question 1 :, Réponse 1, Réponse 2, Réponse 3, Réponse 4',
-  'Question 2 :, Réponse 1.2, Réponse 2.2, Réponse 3.2, Réponse 4.2',
-  'Question 3 :, Réponse 1.3, Réponse 2.3, Réponse 3.3, Réponse 4.3',
-  'Question 4 :, Réponse 1.4, Réponse 2.4, Réponse 3.4, Réponse 4.4',
+var questions = ['Combien vaut ln(e(1))? :, 0, 1, e(1), Ceci n\'est pas défini',
+  'Que se passe t-il lorsque l\'on divise un nombre par zéro? :, Paul abat un innocent petit lapin, on obtient un très grand chiffre, on obtient un très petit chiffre, une bonne vieille erreur des familles',
+  'Quel lettre représente l\'ensemble des nombres complexes :, I, R, C, X',
+  'Un lapin achète 7 cagettes de légumes. Chaque cagette contient 7 choux et 5 carottes. Chaque légume contient 17 pucerons. Combien y a t-il de lapin au total? :, 49, 1428, 84, 1',
   'Question 5 :, Réponse 1.5, Réponse 2.5, Réponse 3.5, Réponse 4.5',
   'Question 6 :, Réponse 1.6, Réponse 2.6, Réponse 3.6, Réponse 4.6',
   'Question 7 :, Réponse 1.7, Réponse 2.7, Réponse 3.7, Réponse 4.7',
@@ -40,65 +40,23 @@ document.getElementById('Next').addEventListener('click', next);
 
 document.getElementById('Previous').addEventListener('click', prev);
 
-//Appel de l'evenement click lors du click sur le bouton dont l'id est answer1 et execution de la fonction checkAnswer(this)
-
-document.getElementById('answer1').addEventListener('click', function() {
-  checkAnswer(this);
-});
-
-//Appel de l'evenement click lors du click sur le bouton dont l'id est answer2 et execution de la fonction checkAnswer(this)
-
-document.getElementById('answer2').addEventListener('click', function() {
-  checkAnswer(this);
-});
-
-//Appel de l'evenement click lors du click sur le bouton dont l'id est answer3 et execution de la fonction checkAnswer(this)
-
-document.getElementById('answer3').addEventListener('click', function() {
-  checkAnswer(this);
-});
-
-//Appel de l'evenement click lors du click sur le bouton dont l'id est answer4 et execution de la fonction checkAnswer(this)
-
-document.getElementById('answer4').addEventListener('click', function() {
-  checkAnswer(this);
-});
-
-// function enableClick() {
-//   document.getElementById('answer1').addEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-//   document.getElementById('answer2').addEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-//   document.getElementById('answer3').addEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-//   document.getElementById('answer4').addEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-// }
-
-// function disableClick() {
-//   document.getElementById('answer1').removeEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-//   document.getElementById('answer2').removeEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-//   document.getElementById('answer3').removeEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-//   document.getElementById('answer4').removeEventListener('click', function() {
-//     checkAnswer(this);
-//   });
-// }
-
 function resetStyle() {
   document.getElementById('answer1').style = '';
   document.getElementById('answer2').style = '';
   document.getElementById('answer3').style = '';
   document.getElementById('answer4').style = '';
+}
+
+function disableClick(){
+  for(i=0;i<4;i++){
+    document.getElementById('answer'+(i+1)).removeAttribute('onclick');
+  }
+}
+
+function enableClick(){
+  for(i=0;i<4;i++){
+    document.getElementById('answer'+(i+1)).setAttribute('onclick','checkAnswer(this)')
+  }
 }
 
 function quizz() {
@@ -119,74 +77,30 @@ function next() {
       resetStyle();
       document.getElementById(choiceAnswer[indexQuestions]).style.backgroundColor = choiceColor[indexQuestions];
       quizz();
-      document.getElementById('answer1').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer2').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer3').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer4').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
+      disableClick();
       console.log('question répondue')
     } else {
       console.log('question non répondue')
       resetStyle();
       quizz();
-      document.getElementById('answer1').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer2').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer3').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer4').addEventListener('click', function() {
-        checkAnswer(this);
-      });
+      enableClick();
     }
   } else if (indexQuestions == 9) {
     alert('il n\'y a pas d\'autre question');
-    document.getElementById('score').textContent=goodAnswers;
+    document.getElementById('score').textContent = goodAnswers;
   } else {
     indexQuestions++;
     if ((choiceColor[indexQuestions] != null)) {
       resetStyle();
       document.getElementById(choiceAnswer[indexQuestions]).style.backgroundColor = choiceColor[indexQuestions];
-      document.getElementById('answer1').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer2').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer3').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer4').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
+      quizz();
+      disableClick();
       console.log('question répondue')
     } else {
       console.log('question non répondue')
       resetStyle();
       quizz();
-      document.getElementById('answer1').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer2').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer3').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer4').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-
+      enableClick();
     }
   }
 }
@@ -202,37 +116,14 @@ function prev() {
       resetStyle();
       document.getElementById(choiceAnswer[indexQuestions]).style.backgroundColor = choiceColor[indexQuestions];
       quizz();
-      document.getElementById('answer1').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer2').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer3').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer4').removeEventListener('click', function() {
-        checkAnswer(this);
-      });
+      disableClick();
       console.log('question repondue')
     } else {
       console.log('question non repondue')
       resetStyle();
       quizz();
-      document.getElementById('answer1').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer2').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer3').addEventListener('click', function() {
-        checkAnswer(this);
-      });
-      document.getElementById('answer4').addEventListener('click', function() {
-        checkAnswer(this);
-      });
+      enableClick();
     }
-
   }
 }
 
@@ -240,35 +131,11 @@ function checkAnswer(td) {
   if (td.id == answers[indexQuestions]) {
     td.style.backgroundColor = 'green';
     goodAnswers++;
-    document.getElementById('answer1').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-    document.getElementById('answer2').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-    document.getElementById('answer3').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-    document.getElementById('answer4').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-
+    disableClick();
   } else {
     td.style.backgroundColor = 'yellow';
-    document.getElementById('answer1').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-    document.getElementById('answer2').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-    document.getElementById('answer3').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-    document.getElementById('answer4').removeEventListener('click', function() {
-      checkAnswer(this);
-    });
-    document.getElementById(answers[indexQuestions]).style.backgroundColor='green';
-
+    document.getElementById(answers[indexQuestions]).style.backgroundColor = 'green';
+    disableClick();
   }
   choiceColor[indexQuestions] = td.style.backgroundColor;
   choiceAnswer[indexQuestions] = td.id;
