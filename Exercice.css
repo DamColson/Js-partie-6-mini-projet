@@ -6,10 +6,24 @@
   border : 2px solid #343a40;
 }
 
-.score{
-
+.bg-lightblue{
+  background-color:lightblue;
 }
 
-/* .testQuizz{
-  display:none;
-} */
+.bg-pink{
+  background-color:#EE82EE;
+  color:black;
+}
+
+.bg-navy{
+  background-color:navy;
+  color:white;
+}
+
+.rem{
+  height:1rem;
+}
+
+#PreviousJr:hover, #moitMoitJr:hover, #NextJr:hover{
+  color:white;
+}
